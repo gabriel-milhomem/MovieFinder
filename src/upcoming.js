@@ -2,13 +2,11 @@ import {renderizarListaFilme} from "./popular.js";
 
 export default function renderizarEmBreve(dados) {
     var listaFilme = [];
+    
     dados.results.forEach(filme => {
-        listaFilme.push({
-            id: filme.id,
-            titulo: filme.title,
-            poster: filme.poster_path,
-            sinopse: filme.overview
-        })
+        var {id, title: titulo, poster_path: poster, overview: sinopse } = filme;
+        var objeto = {id, titulo, poster, sinopse};
+        listaFilme.push(objeto);
     });
 
     renderizarListaFilme(listaFilme);

@@ -63,6 +63,10 @@ nav {
     border-radius: 5px;
 }
 
+#semBorda {
+    border: none;
+}
+
 nav button {
     outline: none;
     border: none;
