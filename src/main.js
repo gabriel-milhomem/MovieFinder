@@ -1,12 +1,12 @@
-import renderizarPopulares from "./popular.js";
-import renderizarNosCinemas from "./now_playing.js";
-import renderizarMaioresNotas from "./top_rated.js";
-import renderizarEmBreve from "./upcoming.js";
+// JS Lógica dos Botões && Comunicar Servidor
+
+import renderizarListas from "./renderLists.js";
 import {transicaoTela} from "./movie.js";
 import axios from "axios";
 import ionicons from "ionicons";
 
 export var listaGenero;
+
 iniciarSite();
 function iniciarSite(){
     var token = "00677d2daa69a1cc4505e8c461dd2031";
@@ -14,40 +14,32 @@ function iniciarSite(){
     var listaButao = document.querySelectorAll("nav button");
     var [populares, nosCinemas, maioresNotas, emBreve] = listaButao;
     var filmes = {populares, nosCinemas, maioresNotas, emBreve};
+    var links = {Popular: "popular", NosCinemas: "now_playing", MaioresNotas: "top_rated", EmBreve: "upcoming"};
+    
     listaDeGenero(token);
-    filmes.populares.addEventListener("click", evento => {
-        alternarFundo(evento.target, filmes);
-        iniciarPopulares(token);
-    });
 
-    filmes.nosCinemas.addEventListener("click", evento => {
-        var link = `https://api.themoviedb.org/3/movie/now_playing?api_key=${token}`;
-        alternarFundo(evento.target, filmes);
-        chamarServidor(link, renderizarNosCinemas);
-    });
+    adicionarEventosCliques(filmes, filmes.populares, links.Popular);
+    adicionarEventosCliques(filmes, filmes.nosCinemas, links.NosCinemas);
+    adicionarEventosCliques(filmes, filmes.maioresNotas, links.MaioresNotas);
+    adicionarEventosCliques(filmes, filmes.emBreve, links.EmBreve);
 
-    filmes.maioresNotas.addEventListener("click", evento => {
-        var link = `https://api.themoviedb.org/3/movie/top_rated?api_key=${token}`;
-        alternarFundo(evento.target, filmes);
-        chamarServidor(link, renderizarMaioresNotas);
-    });
-
-    filmes.emBreve.addEventListener("click", evento => {
-        var link = `https://api.themoviedb.org/3/movie/upcoming?api_key=${token}`;
-        alternarFundo(evento.target, filmes);
-        chamarServidor(link, renderizarEmBreve);
-    });
-
-    botaoVoltar.addEventListener("click", evento => {
-        transicaoTela(true);
-    });
-
+    botaoVoltar.addEventListener("click", () => transicaoTela(true));
     iniciarPopulares(token);
 }
 
-function iniciarPopulares(token) {
-    var link = `https://api.themoviedb.org/3/movie/popular?api_key=${token}`;
-    chamarServidor(link, renderizarPopulares);
+function listaDeGenero(token) {
+    var link = `https://api.themoviedb.org/3/genre/movie/list?api_key=${token}&language=en-US`;
+    var req = axios.get(link);
+    req.then(resposta => listaGenero = resposta.data);
+}   
+
+function adicionarEventosCliques(filmes, tipoDeLista, tipoLink) {
+    tipoDeLista.addEventListener("click", evento => {
+        var token = "00677d2daa69a1cc4505e8c461dd2031";
+        var linkFinal = `https://api.themoviedb.org/3/movie/${tipoLink}?api_key=${token}`;
+        alternarFundo(evento.target, filmes);
+        chamarServidor(linkFinal, renderizarListas);
+    });
 }
 
 function alternarFundo(categoriaClicada, filmes) {
@@ -60,15 +52,10 @@ function alternarFundo(categoriaClicada, filmes) {
 
 function chamarServidor(link, renderizar) {
     var req = axios.get(link);
-    req.then(resposta => {
-        renderizar(resposta.data);
-    });
+    req.then(resposta => renderizar(resposta.data));
 }
 
-function listaDeGenero(token) {
-    var link = `https://api.themoviedb.org/3/genre/movie/list?api_key=${token}&language=en-US`;
-    var req = axios.get(link);
-    req.then(resposta => {
-        listaGenero = resposta.data;
-    });
-}   
+function iniciarPopulares(token) {
+    var link = `https://api.themoviedb.org/3/movie/popular?api_key=${token}`;
+    chamarServidor(link, renderizarListas);
+}

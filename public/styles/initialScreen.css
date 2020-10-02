@@ -1,0 +1,42 @@
+/* CSS TELA INICIAL */
+
+.topoSite {
+    margin: 30px 0px 55px;
+    flex-direction: column;
+}
+
+.topoSite img {
+    width: 190px;
+    height: 40px;
+}
+
+nav {
+    height: 35px;
+    width: 400px;
+    display: flex;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+    margin-top: 45px;
+}
+
+#semBorda {
+    border: none;
+}
+
+nav button {
+    flex-grow: 1;
+    color: inherit;
+    font: inherit;
+    border-left: 1px solid #aaaaaa;
+    font-weight: 500;
+}
+
+.listaFilme li {
+    width: 180px;
+    margin: 0px 20px 20px 0px;
+    height: 260px;
+}
+
+.listaFilme li:nth-child(5n) {
+    margin-right: 0px;
+}

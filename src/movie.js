@@ -1,35 +1,15 @@
+// JS -> Renderizaração Tela Unica && Transicao
+
 import {listaGenero} from "./main.js";
 
 export default function exibirTelaUnica(evento, listaFilme) {
-    transicaoTela(false);
-
     var listaHTML = document.querySelectorAll("figure, h1, .avaliacao, .generosFilme, p");
-    //resetarArticle(listaHTML);
-
-    var [posterCaixa, tituloCaixa, avaliacaoCaixa, generosCaixa, sinopseCaixa] = listaHTML;
     var id = parseInt(evento.target.getAttribute("id"));
     var filmeSelecionado = listaFilme.find(filme => filme.id === id);
 
-    posterCaixa.innerHTML = `<img src= "https://image.tmdb.org/t/p/w300${filmeSelecionado.poster}" alt= "Poster do Filme"/>`;
-    tituloCaixa.innerText = filmeSelecionado.titulo;
-    avaliacaoCaixa.innerHTML = `<strong> ${filmeSelecionado.avaliacao} </strong>`;
-    
-
-    var nomesGeneros = filmeSelecionado.generos.map(id => {
-        return listaGenero.genres.find(objeto => id === objeto.id); 
-    });
-
-    console.log('MANO FAZ ALGO FILHO DA PUTAs');
-    generosCaixa.innerHTML = `<span> Generos: </span>`;
-    nomesGeneros.forEach(objeto => {
-        generosCaixa.innerHTML += `<li> ${objeto.name} </li>`
-    });
-
-    sinopseCaixa.innerHTML = `<span> Sinopse:</span>${filmeSelecionado.sinopse}`;
-}
-
-function resetarArticle(lista){
-    lista.forEach(html => html.innerHTML = "");
+    transicaoTela(false);
+    resetarArticle(listaHTML);
+    renderizarTelaUnica(filmeSelecionado, listaHTML);
 }
 
 export function transicaoTela(irTelaInicial) {
@@ -46,4 +26,25 @@ export function transicaoTela(irTelaInicial) {
         ul.classList.add("oculto");
         article.classList.remove("oculto");
     }
+}
+
+function resetarArticle(lista) {
+    lista.forEach(html => html.innerHTML = "");
+}
+
+function renderizarTelaUnica(escolhido, listaHTML) {
+    var [posterCaixa, tituloCaixa, avaliacaoCaixa, generosCaixa, sinopseCaixa] = listaHTML;
+    var nomesGeneros = escolhido.generos.map(id => {
+        return listaGenero.genres.find(objeto => id === objeto.id); 
+    });
+
+    posterCaixa.innerHTML = `<img src= "https://image.tmdb.org/t/p/w300${escolhido.poster}" alt= "Poster do Filme"/>`;
+    tituloCaixa.innerText = escolhido.titulo;
+    avaliacaoCaixa.innerHTML = `<strong> ${escolhido.avaliacao} </strong>`;
+    generosCaixa.innerHTML = `<span> Generos: </span>`;
+    nomesGeneros.forEach(objeto => {
+        generosCaixa.innerHTML += `<li> ${objeto.name} </li>`
+    });
+
+    sinopseCaixa.innerHTML = `<span> Sinopse:</span>${escolhido.sinopse}`;
 }
