@@ -1,7 +1,6 @@
 
 export default function exibirTelaUnica(evento, listaFilme) {
-    var irTelaInicial = false;
-    transicaoTela(irTelaInicial);
+    transicaoTela(false);
 
     var listaHTML = document.querySelectorAll("figure, h1, .avaliacao, p");
     resetarArticle(listaHTML);
@@ -20,7 +19,7 @@ function resetarArticle(lista){
     lista.forEach(html => html.innerHTML = "");
 }
 
-function transicaoTela(irTelaInicial) {
+export function transicaoTela(irTelaInicial) {
     var paginas = document.querySelectorAll("nav, ul, article");
     var [nav, ul, article] = paginas;
     if(irTelaInicial) {

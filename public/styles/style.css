@@ -62,16 +62,20 @@ nav {
     border: none;
 }
 
-nav button {
+button {
     outline: none;
     border: none;
-    flex-grow: 1;
     background: transparent;
+    padding: 0px;
+}
+
+nav button {
+    flex-grow: 1;
     color: inherit;
     font: inherit;
     border-left: 1px solid #aaaaaa;
     font-weight: 500;
-    padding: 0px;
+
 }
 
 /* ------------------ Corpo Listas ------------------- */
@@ -126,8 +130,12 @@ figure {
     color: #E59122;
 }
 
+figure img {
+    cursor: initial;
+}
+
 .avaliacao {
-    height: 80%;
+    height: 50px;
     width: 50px;
     border-radius: 100px;
     border: 2px solid white;

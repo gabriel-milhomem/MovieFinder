@@ -2,11 +2,13 @@ import renderizarPopulares from "./popular.js";
 import renderizarNosCinemas from "./now_playing.js";
 import renderizarMaioresNotas from "./top_rated.js";
 import renderizarEmBreve from "./upcoming.js";
+import {transicaoTela} from "./movie.js";
 
 iniciarSite();
 
 function iniciarSite(){
     var token = "00677d2daa69a1cc4505e8c461dd2031";
+    var botaoVoltar = document.querySelector("#botaoVoltar");
     var listaButao = document.querySelectorAll("nav button");
     var [populares, nosCinemas, maioresNotas, emBreve] = listaButao;
     var filmes = {populares, nosCinemas, maioresNotas, emBreve};
@@ -32,6 +34,10 @@ function iniciarSite(){
         var link = `https://api.themoviedb.org/3/movie/upcoming?api_key=${token}`;
         alternarFundo(evento.target, filmes);
         chamarServidor(link, renderizarEmBreve);
+    });
+
+    botaoVoltar.addEventListener("click", evento => {
+        transicaoTela(true);
     });
 
     iniciarPopulares(token);
