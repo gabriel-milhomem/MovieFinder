@@ -1,2 +1,4 @@
 node_modules
 public/bundle.js
+public/0.bundle.js
+public/1.bundle.js

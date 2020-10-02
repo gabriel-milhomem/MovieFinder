@@ -3,8 +3,8 @@ import exibirTelaUnica from "./movie.js";
 export default function renderizarPopulares(dados) {
     var listaFilme = [];
     dados.results.forEach(filme => {
-        var {id, title: titulo, poster_path: poster, overview: sinopse, vote_average: avaliacao} = filme;
-        var objeto = {id, titulo, poster, sinopse, avaliacao};
+        var {id, title: titulo, poster_path: poster, overview: sinopse, vote_average: avaliacao, genre_ids: generos} = filme;
+        var objeto = {id, titulo, poster, sinopse, avaliacao, generos};
         listaFilme.push(objeto);
     });
 
@@ -12,7 +12,7 @@ export default function renderizarPopulares(dados) {
 }
 
 export function renderizarListaFilme(listaFilme){
-    var container = document.querySelector("ul");
+    var container = document.querySelector(".listaFilme");
     container.innerHTML = "";
     listaFilme.forEach(filme => {
         var novoLi = document.createElement("li");

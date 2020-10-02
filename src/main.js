@@ -3,16 +3,18 @@ import renderizarNosCinemas from "./now_playing.js";
 import renderizarMaioresNotas from "./top_rated.js";
 import renderizarEmBreve from "./upcoming.js";
 import {transicaoTela} from "./movie.js";
+import axios from "axios";
+import ionicons from "ionicons";
 
+export var listaGenero;
 iniciarSite();
-
 function iniciarSite(){
     var token = "00677d2daa69a1cc4505e8c461dd2031";
     var botaoVoltar = document.querySelector("#botaoVoltar");
     var listaButao = document.querySelectorAll("nav button");
     var [populares, nosCinemas, maioresNotas, emBreve] = listaButao;
     var filmes = {populares, nosCinemas, maioresNotas, emBreve};
-
+    listaDeGenero(token);
     filmes.populares.addEventListener("click", evento => {
         alternarFundo(evento.target, filmes);
         iniciarPopulares(token);
@@ -62,3 +64,11 @@ function chamarServidor(link, renderizar) {
         renderizar(resposta.data);
     });
 }
+
+function listaDeGenero(token) {
+    var link = `https://api.themoviedb.org/3/genre/movie/list?api_key=${token}&language=en-US`;
+    var req = axios.get(link);
+    req.then(resposta => {
+        listaGenero = resposta.data;
+    });
+}   
