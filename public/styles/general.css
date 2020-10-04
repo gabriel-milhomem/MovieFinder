@@ -51,14 +51,27 @@ img {
 button {
     outline: none;
     border: none;
-    background: transparent;
+    background: none;
     padding: 0px;
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 32px;
 }
 
 span {
     font-size: 20px;
+}
+
+strong {
+    font-weight: 500;
+}
+
+ion-icon {
+    font-size: 36px;
+    color: white;
+}
+
+.corAmarela {
+    color:gold;
 }

@@ -35,8 +35,25 @@ nav button {
     width: 180px;
     margin: 0px 20px 20px 0px;
     height: 260px;
+    position: relative;
 }
 
 .listaFilme li:nth-child(5n) {
     margin-right: 0px;
+}
+
+.favorito {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    display: none;
+}
+
+.iconAparecer {
+    display: block!important;
+}
+
+.favorito ion-icon {
+    color: gold;
 }
