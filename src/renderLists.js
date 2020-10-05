@@ -8,8 +8,8 @@ export default function renderizarListas(dados) {
 
     dados.results.forEach(filme => {
         var {id, title: titulo, poster_path: poster, overview: sinopse, vote_average: avaliacao, genre_ids: generos} = filme;
-        var objeto = {id, titulo, poster, sinopse, avaliacao, generos};
-        listaFilme.push(objeto);
+        var informacoesFilme = {id, titulo, poster, sinopse, avaliacao, generos};
+        listaFilme.push(informacoesFilme);
     });
 
     renderizarListaFilme(listaFilme);

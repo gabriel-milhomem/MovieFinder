@@ -2,7 +2,7 @@
 
 import {listaGenero} from "./main.js";
 
-export default function exibirTelaUnica(evento, listaFilme) {4
+export default function exibirTelaUnica(evento, listaFilme) {
     var listaHTML = document.querySelectorAll("figure, h1, .avaliacao, .generosFilme, p");
     var li = evento.target.parentNode;
     var id = li.getAttribute("id");

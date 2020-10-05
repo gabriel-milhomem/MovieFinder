@@ -92,7 +92,6 @@ function logicaFavorito(icone) {
     });
 }
 
-
 function iniciarPopulares(token) {
     var link = `https://api.themoviedb.org/3/movie/popular?api_key=${token}`;
     chamarServidor(link, renderizarListas);

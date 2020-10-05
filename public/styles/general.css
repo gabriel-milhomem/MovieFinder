@@ -8,6 +8,8 @@ body {
     font-family: 'Roboto', sans-serif;
     color: white;
     background-image: url("../images/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
     font-size: 16px;
 }
 
