@@ -4,19 +4,20 @@
   "description": "Seu primeiro projeto usando JavaScript Moderno será um site que te ajuda a descobrir novos filmes!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gabriel-milhomem/projeto-06-movie-finder.git"
+    "url": "git+https://github.com/gabriel-milhomem/MovieFinder.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gabriel-milhomem/projeto-06-movie-finder/issues"
+    "url": "https://github.com/gabriel-milhomem/MovieFinder/issues"
   },
-  "homepage": "https://github.com/gabriel-milhomem/projeto-06-movie-finder#readme",
+  "homepage": "https://github.com/gabriel-milhomem/MovieFinder",
   "dependencies": {
     "@babel/cli": "^7.11.6",
     "@babel/core": "^7.11.6",
